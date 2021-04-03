@@ -37,8 +37,6 @@ pipeline {
                 sh """ 
                    pwd;cd aws-instance-first-script ;    ${terraformtest} init -input=false
                    echo "first ${environment}"
-                   ${terraformtest} workspace new ${environment}
-                   echo "second"
                    ${terraformtest} workspace select ${environment}
                    echo "three"
                    ${terraformtest} plan -input=false -out tfplan
