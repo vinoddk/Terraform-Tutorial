@@ -37,12 +37,12 @@ pipeline {
                 sh """ 
                    pwd;cd aws-instance-first-script ;    ${terraformtest} init -input=false
                    echo "first ${environment}"
-                    pwd;cd aws-instance-first-script ; ${terraformtest} workspace new ${environment}
-                    echo "second"
-                    pwd;cd aws-instance-first-script ; ${terraformtest} workspace select ${environment}
-                    echo "three"
-                    pwd;cd aws-instance-first-script ;${terraformtest} plan -input=false -out tfplan
-                    pwd;cd aws-instance-first-script ;${terraformtest} show -no-color tfplan > tfplan.txt
+                   ${terraformtest} workspace new ${environment}
+                   echo "second"
+                   ${terraformtest} workspace select ${environment}
+                   echo "three"
+                   ${terraformtest} plan -input=false -out tfplan
+                   ${terraformtest} show -no-color tfplan > tfplan.txt
                    """
             }
         }
