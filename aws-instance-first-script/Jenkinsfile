@@ -1,4 +1,4 @@
-
+terraformtest = "${env.TERRAFORM_PATH}"
 pipeline {
 
     parameters {
@@ -27,16 +27,23 @@ pipeline {
                             git "https://github.com/easyawslearn/Terraform-Tutorial.git"
                         }
                     }
+                     
                 }
             }
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform init -input=false'
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace new ${environment}'
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace select ${environment}'
-                sh "pwd;cd terraform/aws-instance-first-script ;terraform plan -input=false -out tfplan "
-                sh 'pwd;cd terraform/aws-instance-first-script ;terraform show -no-color tfplan > tfplan.txt'
+               
+                sh """ 
+                   pwd;cd terraform/aws-instance-first-script ;    ${terraformtest} init -input=false
+                   echo "first"
+                    pwd;cd terraform/aws-instance-first-script ; ${terraformtest} workspace new ${environment}
+                    echo "second"
+                    pwd;cd terraform/aws-instance-first-script ; ${terraformtest} workspace select ${environment}
+                    echo "three"
+                    pwd;cd terraform/aws-instance-first-script ;${terraformtest} plan -input=false -out tfplan
+                    pwd;cd terraform/aws-instance-first-script ;${terraformtest} show -no-color tfplan > tfplan.txt
+                   """
             }
         }
         stage('Approval') {
