@@ -62,7 +62,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd aws-instance-first-script ; terraform apply -input=false tfplan"
+                sh "pwd;cd aws-instance-first-script ; ${terraformtest} apply -input=false tfplan"
             }
         }
     }
