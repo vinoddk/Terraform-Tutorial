@@ -35,14 +35,14 @@ pipeline {
             steps {
                
                 sh """ 
-                   pwd;cd terraform/aws-instance-first-script ;    ${terraformtest} init -input=false
+                   pwd;cd aws-instance-first-script ;    ${terraformtest} init -input=false
                    echo "first"
-                    pwd;cd terraform/aws-instance-first-script ; ${terraformtest} workspace new ${environment}
+                    pwd;cd aws-instance-first-script ; ${terraformtest} workspace new ${environment}
                     echo "second"
-                    pwd;cd terraform/aws-instance-first-script ; ${terraformtest} workspace select ${environment}
+                    pwd;cd aws-instance-first-script ; ${terraformtest} workspace select ${environment}
                     echo "three"
-                    pwd;cd terraform/aws-instance-first-script ;${terraformtest} plan -input=false -out tfplan
-                    pwd;cd terraform/aws-instance-first-script ;${terraformtest} show -no-color tfplan > tfplan.txt
+                    pwd;cd aws-instance-first-script ;${terraformtest} plan -input=false -out tfplan
+                    pwd;cd aws-instance-first-script ;${terraformtest} show -no-color tfplan > tfplan.txt
                    """
             }
         }
