@@ -3,11 +3,11 @@
 #    instance_type = "t2.micro"
 #  }
 resource "aws_s3_bucket" "bucket_testt_divesh" {
-  bucket = "bucket_testt_divesh"
+  bucket = "buckettesttdivesh"
   acl    = "private"
 
   tags = {
-    Name        = "bucket_testt_divesh"
+    Name        = "buckettesttdivesh"
     Environment = "Dev"
   }
 }
